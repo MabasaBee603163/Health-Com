@@ -1,12 +1,20 @@
 import { useEffect, useMemo, useState } from "react"
 import { ConfirmStrip } from "../components/ConfirmStrip"
+import { ListeningStage } from "../components/ListeningStage"
+import { PatientAvatar } from "../components/PatientAvatar"
 import { RolePane } from "../components/RolePane"
+import { SegmentedControl } from "../components/SegmentedControl"
 import { StatusPill } from "../components/StatusPill"
 import { useSessionSocket } from "../hooks/useSessionSocket"
 import { createSession, fetchPatients, mockListen, translateText } from "../services/api"
 import { LANG_LABELS, type LangCode, type Patient } from "../services/types"
 
 const LANGS: LangCode[] = ["en", "tn", "zu", "ts"]
+
+const LANG_OPTIONS = LANGS.map((value) => ({
+  value,
+  label: LANG_LABELS[value],
+}))
 
 const FALLBACK_PATIENTS: Patient[] = [
   { id: "p1", name: "Thabo Molefe", preferredLang: "tn" },
@@ -50,6 +58,16 @@ export function ConsultationPage() {
     return status
   }, [connected, sessionId, status])
 
+  const isListeningMode =
+    status === "listening" || status === "translating" || status === "playing"
+
+  const focusRole = useMemo<"doctor" | "patient" | null>(() => {
+    if (status === "awaiting_confirm") return "patient"
+    return null
+  }, [status])
+
+  const listeningTranscript = turn === "doctor" ? doctorText : patientText
+
   async function startConsult() {
     if (!patient) return
     setBusy(true)
@@ -65,7 +83,6 @@ export function ConsultationPage() {
       setDoctorText("Ready when you are.")
       setPatientText("The doctor will speak first.")
     } catch {
-      // Offline-friendly demo path
       setSessionId(`local-${Date.now()}`)
       setStep("consult")
       setStatus("idle")
@@ -79,6 +96,7 @@ export function ConsultationPage() {
     setTurn("doctor")
     setStatus("listening")
     setDoctorHint("Listening…")
+    setDoctorText("")
     emit("utterance:start", { speaker: "doctor" })
     try {
       const heard = await mockListen("doctor").catch(() => ({
@@ -116,6 +134,7 @@ export function ConsultationPage() {
     setTurn("patient")
     setStatus("listening")
     setPatientHint("Listening…")
+    setPatientText("")
     try {
       const heard = await mockListen("patient").catch(() => ({
         text: "I don’t understand. Can you explain that again more simply?",
@@ -162,121 +181,164 @@ export function ConsultationPage() {
     setTurn("doctor")
   }
 
-  if (step === "patient") {
-    return (
-      <div className="setup-card">
-        <h1 className="brand">HealthCom</h1>
-        <p>Select the patient for this consultation.</p>
-        <div className="patient-grid">
-          {patients.map((p) => (
-            <button
-              key={p.id}
-              type="button"
-              className="patient-card"
-              aria-pressed={patient?.id === p.id}
-              onClick={() => setPatient(p)}
-            >
-              <strong>{p.name}</strong>
-              <div>{LANG_LABELS[p.preferredLang]}</div>
-            </button>
-          ))}
-        </div>
-        <button
-          type="button"
-          className="btn btn-primary"
-          disabled={!patient}
-          onClick={() => {
-            if (patient) setPatientLang(patient.preferredLang)
-            setStep("languages")
-          }}
-        >
-          Continue
-        </button>
-      </div>
-    )
+  function onListeningMic() {
+    if (turn === "patient") void runPatientRespond()
+    else void runDoctorSpeak()
   }
 
-  if (step === "languages") {
+  function onListeningDismiss() {
+    if (busy && status === "listening") return
+    window.speechSynthesis?.cancel()
+    setStatus("idle")
+    setBusy(false)
+  }
+
+  if (step === "patient" || step === "languages") {
     return (
-      <div className="setup-card">
-        <h1 className="brand">Languages</h1>
-        <p>One shared tablet. Choose what each side speaks.</p>
-        <label className="field">
-          Doctor language
-          <select value={doctorLang} onChange={(e) => setDoctorLang(e.target.value as LangCode)}>
-            {LANGS.map((l) => (
-              <option key={l} value={l}>{LANG_LABELS[l]}</option>
-            ))}
-          </select>
-        </label>
-        <label className="field">
-          Patient language
-          <select value={patientLang} onChange={(e) => setPatientLang(e.target.value as LangCode)}>
-            {LANGS.map((l) => (
-              <option key={l} value={l}>{LANG_LABELS[l]}</option>
-            ))}
-          </select>
-        </label>
-        <div className="action-row">
-          <button type="button" className="btn btn-secondary" onClick={() => setStep("patient")}>Back</button>
-          <button type="button" className="btn btn-primary" disabled={busy} onClick={startConsult}>
-            Start consultation
-          </button>
+      <div className="setup-stage">
+        <div className="setup-backdrop" aria-hidden="true" />
+        <div className="setup-card" role="dialog" aria-modal="true" aria-labelledby="setup-title">
+          {step === "patient" ? (
+            <>
+              <div className="setup-card-header">
+                <h1 id="setup-title" className="brand">HealthCom</h1>
+                <p>Select the patient for this consultation.</p>
+              </div>
+              <div className="setup-card-body">
+                <div className="patient-list thin-scroll">
+                  <div className="patient-grid">
+                    {patients.map((p) => (
+                      <button
+                        key={p.id}
+                        type="button"
+                        className="patient-card"
+                        aria-pressed={patient?.id === p.id}
+                        onClick={() => setPatient(p)}
+                      >
+                        <PatientAvatar name={p.name} />
+                        <strong>{p.name}</strong>
+                        <span className="patient-lang">{LANG_LABELS[p.preferredLang]}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div className="setup-actions">
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  disabled={!patient}
+                  onClick={() => {
+                    if (patient) setPatientLang(patient.preferredLang)
+                    setStep("languages")
+                  }}
+                >
+                  Continue
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="setup-card-header">
+                <h1 id="setup-title" className="brand">Languages</h1>
+                <p>One shared tablet. Choose what each side speaks.</p>
+              </div>
+              <div className="setup-card-body">
+                <div className="lang-fields thin-scroll">
+                  <SegmentedControl
+                    label="Doctor language"
+                    value={doctorLang}
+                    options={LANG_OPTIONS}
+                    onChange={setDoctorLang}
+                  />
+                  <SegmentedControl
+                    label="Patient language"
+                    value={patientLang}
+                    options={LANG_OPTIONS}
+                    onChange={setPatientLang}
+                  />
+                </div>
+              </div>
+              <div className="setup-actions action-row">
+                <button type="button" className="btn btn-secondary" onClick={() => setStep("patient")}>
+                  Back
+                </button>
+                <button type="button" className="btn btn-primary" disabled={busy} onClick={startConsult}>
+                  Start consultation
+                </button>
+              </div>
+            </>
+          )}
         </div>
       </div>
     )
   }
 
   return (
-    <>
+    <div className="consult-stage">
       <div className="brand-bar">
         <h1 className="brand">HealthCom</h1>
         <StatusPill status={statusForPill} />
       </div>
-      <div className="dual-pane">
-        <RolePane
-          role="doctor"
-          language={doctorLang}
-          title="Doctor"
-          message={doctorText}
-          hint={doctorHint}
-        >
-          <div className="action-row">
-            <button
-              type="button"
-              className="btn btn-primary"
-              disabled={busy || turn === "patient"}
-              onClick={runDoctorSpeak}
-            >
-              Speak
-            </button>
-          </div>
-        </RolePane>
-        <RolePane
-          role="patient"
-          language={patientLang}
-          title="Patient"
-          message={patientText}
-          hint={patientHint}
-        >
-          <ConfirmStrip
-            disabled={busy || status !== "awaiting_confirm"}
-            onYes={onYes}
-            onRepeat={onRepeat}
-            onClarify={onClarify}
-          />
-          <div className="action-row">
-            <button
-              type="button"
-              className="btn btn-secondary"
-              disabled={busy}
-              onClick={runPatientRespond}
-            >
-              Respond
-            </button>
-          </div>
-        </RolePane>
-      </div>
-    </>
+
+      {isListeningMode &&
+      (status === "listening" || status === "translating" || status === "playing") ? (
+        <ListeningStage
+          status={status}
+          turn={turn}
+          transcript={listeningTranscript || undefined}
+          busy={busy}
+          onMic={onListeningMic}
+          onDismiss={onListeningDismiss}
+        />
+      ) : (
+        <div className="dual-pane">
+          <RolePane
+            role="doctor"
+            language={doctorLang}
+            title="Doctor"
+            message={doctorText}
+            hint={doctorHint}
+            dimmed={focusRole === "patient"}
+          >
+            <div className="action-row">
+              <button
+                type="button"
+                className="btn btn-primary"
+                disabled={busy || turn === "patient"}
+                onClick={runDoctorSpeak}
+              >
+                Speak
+              </button>
+            </div>
+          </RolePane>
+          <RolePane
+            role="patient"
+            language={patientLang}
+            title="Patient"
+            message={patientText}
+            hint={patientHint}
+            dimmed={focusRole === "doctor"}
+          >
+            <ConfirmStrip
+              disabled={busy || status !== "awaiting_confirm"}
+              onYes={onYes}
+              onRepeat={onRepeat}
+              onClarify={onClarify}
+            />
+            <div className="action-row">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                disabled={busy}
+                onClick={runPatientRespond}
+              >
+                Respond
+              </button>
+            </div>
+          </RolePane>
+        </div>
+      )}
+    </div>
   )
 }
