@@ -18,8 +18,32 @@ h1, h2, h3 {
   font-weight: 700;
   letter-spacing: -0.02em;
 }
+html.healthcom-desktop-app,
+html.healthcom-desktop-app body {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+html.healthcom-desktop-app .message-stage,
+html.healthcom-desktop-app input,
+html.healthcom-desktop-app select,
+html.healthcom-desktop-app textarea {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+html.healthcom-desktop-app .brand-bar {
+  -webkit-app-region: drag;
+}
+
+html.healthcom-desktop-app .brand-bar button,
+html.healthcom-desktop-app .status-pill {
+  -webkit-app-region: no-drag;
+}
+
 .app-shell {
   min-height: 100vh;
+  min-height: 100dvh;
   padding: 1.25rem;
   display: flex;
   flex-direction: column;

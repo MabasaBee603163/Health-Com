@@ -4,23 +4,23 @@ Multilingual clinical communication for South African public healthcare — pref
 
 > **Current phase:** pitch-grade technical feasibility demo (not production).
 
-## Quick start (demo)
+## Quick start (desktop app)
 
 ```bash
 # terminal 1
 cd backend
 npm install
-npm run dev
+npm start
 
 # terminal 2
 cd frontend
 npm install
-npm run dev
+npm run app
 ```
 
-Open the Vite URL (default http://localhost:5173) on a tablet or desktop window.
+This launches **HealthCom** in an Electron window (no browser URL bar).
 
-**Demo loop:** Select patient → Select languages → Speak → Patient hears translation → Yes / Repeat / Clarify → Respond.
+Optional web-only preview: `cd frontend && npm run dev` → http://127.0.0.1:5173  
 
 Full pitch script: [DEMO.md](DEMO.md).
 

@@ -1,21 +1,25 @@
 # Pitch demo walkthrough
 
-**Goal:** Show higher-ups the HealthCom consultation loop on **one shared tablet**.
+**Goal:** Show higher-ups the HealthCom consultation loop as a **desktop app** on one shared tablet / laptop.
 
-## Start
+## Start (app)
 
 ```bash
-# terminal 1
+# terminal 1 — API
 cd backend
 npm start
 
-# terminal 2
+# terminal 2 — HealthCom app (Electron shell, no browser chrome)
 cd frontend
-npm run dev
+npm run app
 ```
 
-- Backend: http://localhost:3001  
-- Frontend: http://localhost:5173  
+This opens a native window titled **HealthCom** (not Chrome/Edge).
+
+- Backend: http://127.0.0.1:3001  
+- Optional browser-only UI: `cd frontend && npm run dev` → http://127.0.0.1:5173  
+
+Press **F11** in the app window for fullscreen tablet-style demo.
 
 ## Script (2–3 minutes)
 
@@ -29,7 +33,7 @@ npm run dev
 
 ## What to say
 
-> This is not Google Translate with a hospital logo.  
+> This is not Google Translate in a browser.  
 > One device. Two languages. Speak, hear, confirm understanding.  
 > The language path is mocked for reliability in the room; the same adapters can take a live provider next.
 
