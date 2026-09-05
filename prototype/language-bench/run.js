@@ -1,4 +1,4 @@
-﻿const LABELS = { en: "English", tn: "Setswana", zu: "isiZulu", ts: "Xitsonga" }
+const LABELS = { en: "English", tn: "Setswana", zu: "isiZulu", ts: "Xitsonga" }
 const phrases = [
   "I need to explain the risks of this procedure before you decide.",
   "Take two tablets in the morning with food.",

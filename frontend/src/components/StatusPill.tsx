@@ -1,4 +1,4 @@
-﻿import type { SessionStatus } from "../services/types"
+import type { SessionStatus } from "../services/types"
 
 const LABELS: Record<SessionStatus, string> = {
   idle: "Ready",

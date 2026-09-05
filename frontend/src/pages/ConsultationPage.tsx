@@ -1,4 +1,4 @@
-﻿import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { ConfirmStrip } from "../components/ConfirmStrip"
 import { RolePane } from "../components/RolePane"
 import { StatusPill } from "../components/StatusPill"

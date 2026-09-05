@@ -1,4 +1,4 @@
-﻿const DOCTOR_SAMPLES = [
+const DOCTOR_SAMPLES = [
   "I need to explain the risks of this procedure before you decide.",
   "Take two tablets in the morning with food.",
   "Where is the pain, and when did it start?",

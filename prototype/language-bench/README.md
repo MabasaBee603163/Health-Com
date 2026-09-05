@@ -1,4 +1,4 @@
-﻿# Language bench
+# Language bench
 
 Run from `backend/`:
 

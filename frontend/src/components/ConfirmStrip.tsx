@@ -1,4 +1,4 @@
-﻿type Props = {
+type Props = {
   disabled?: boolean
   onYes: () => void
   onRepeat: () => void

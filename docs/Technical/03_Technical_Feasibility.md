@@ -1,4 +1,4 @@
-﻿# 03 — Technical Feasibility
+# 03 — Technical Feasibility
 
 | | |
 | --- | --- |

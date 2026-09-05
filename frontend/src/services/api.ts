@@ -1,4 +1,4 @@
-﻿import type { LangCode, Patient } from "./types"
+import type { LangCode, Patient } from "./types"
 
 const API = "/api"
 

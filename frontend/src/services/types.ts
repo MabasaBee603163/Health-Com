@@ -1,4 +1,4 @@
-﻿export type LangCode = "en" | "tn" | "zu" | "ts"
+export type LangCode = "en" | "tn" | "zu" | "ts"
 
 export const LANG_LABELS: Record<LangCode, string> = {
   en: "English",

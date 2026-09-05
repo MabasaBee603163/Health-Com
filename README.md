@@ -1,4 +1,4 @@
-﻿# HealthCom
+# HealthCom
 
 Multilingual clinical communication for South African public healthcare — preferred-language explanation, comprehension checks, and defensible digital records.
 

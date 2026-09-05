@@ -1,4 +1,4 @@
-﻿import type { ReactNode } from "react"
+import type { ReactNode } from "react"
 import { LANG_LABELS, type LangCode } from "../services/types"
 
 type Props = {
