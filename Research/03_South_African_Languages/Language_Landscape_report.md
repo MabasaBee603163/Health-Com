@@ -7,7 +7,7 @@
 | **Document type** | Research brief |
 | **Prepared for** | HealthCom |
 | **Scope** | National language demographics, clinical communication mismatch, medicolegal exposure |
-| **Companion briefs** | [DGMAH report](../DGMAH/DGMAH_report.md) · [SA healthcare system report](../South_African_Healthcare/SA_HealthCare_report.md) |
+| **Companion briefs** | [DGMAH report](../01_DGMAH/DGMAH_report.md) · [SA healthcare system report](../02_Healthcare_Language_Barriers/SA_HealthCare_report.md) |
 | **Last updated** | September 2026 |
 
 ## Executive summary
@@ -319,9 +319,9 @@ The demographic evidence, hospital research, legal duties, and medicolegal cost 
 
 10. Republic of South Africa. (2003). *National Health Act 61 of 2003*.
 
-11. HealthCom Research. (2026). *Communication barriers in South African healthcare* (DGMAH brief). See `../DGMAH/DGMAH_report.md`.
+11. HealthCom Research. (2026). *Communication barriers in South African healthcare* (DGMAH brief). See `../01_DGMAH/DGMAH_report.md`.
 
-12. HealthCom Research. (2026). *South Africa’s healthcare system* (system brief). See `../South_African_Healthcare/SA_HealthCare_report.md`.
+12. HealthCom Research. (2026). *South Africa’s healthcare system* (system brief). See `../02_Healthcare_Language_Barriers/SA_HealthCare_report.md`.
 
 ## Appendix A: Suggested citation for this brief
 

@@ -7,7 +7,7 @@
 | **Document type** | Research and compliance brief |
 | **Prepared for** | HealthCom |
 | **Scope** | Data protection, telehealth ethics, SaMD boundary, confidentiality controls |
-| **Companion briefs** | [Existing solutions](../Existing_Solutions/Existing_Solutions_report.md) · [Language landscape](../Language_Landscape/Language_Landscape_report.md) · [SA healthcare](../South_African_Healthcare/SA_HealthCare_report.md) |
+| **Companion briefs** | [Existing solutions](../../Research/05_Existing_Solutions/Existing_Solutions_report.md) · [Language landscape](../../Research/03_South_African_Languages/Language_Landscape_report.md) · [SA healthcare](../../Research/02_Healthcare_Language_Barriers/SA_HealthCare_report.md) |
 | **Last updated** | September 2026 |
 | **Disclaimer** | Research synthesis for product design, not formal legal advice |
 
@@ -249,7 +249,7 @@ The winning architecture is therefore local-first, operator-contracted, consent-
 
 5. South African Health Products Regulatory Authority. Medical device / IVD guidance materials on software and quality systems. Pretoria: SAHPRA.
 
-6. HealthCom Research. (2026). *Existing solutions and the HealthCom gap*. See `../Existing_Solutions/Existing_Solutions_report.md`.
+6. HealthCom Research. (2026). *Existing solutions and the HealthCom gap*. See `../../Research/05_Existing_Solutions/Existing_Solutions_report.md`.
 
 ## Appendix A: Suggested citation for this brief
 

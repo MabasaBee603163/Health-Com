@@ -7,7 +7,7 @@
 | **Document type** | Research brief |
 | **Prepared for** | HealthCom |
 | **Scope** | National public/private architecture, referral system, access barriers |
-| **Companion brief** | [DGMAH communication barriers report](../DGMAH/DGMAH_report.md) |
+| **Companion brief** | [DGMAH communication barriers report](../01_DGMAH/DGMAH_report.md) |
 | **Last updated** | September 2026 |
 
 ## Executive summary
@@ -283,7 +283,7 @@ For HealthCom, that is the design brief. The product should not only “digitise
 
 5. Solanki, G., Myburgh, N., Wild, S., & Cornell, J. (2025). The National Health Insurance Act: Possible private health funding reform scenarios. *South African Medical Journal*, 115(5). [https://doi.org/10.7196/samj.2025.v115i5.2550](https://doi.org/10.7196/samj.2025.v115i5.2550)
 
-6. HealthCom Research. (2026). *Communication barriers in South African healthcare: Evidence from Dr George Mukhari Academic Hospital and the national context* (Research brief). See `../DGMAH/DGMAH_report.md`.
+6. HealthCom Research. (2026). *Communication barriers in South African healthcare: Evidence from Dr George Mukhari Academic Hospital and the national context* (Research brief). See `../01_DGMAH/DGMAH_report.md`.
 
 ## Appendix A: Suggested citation for this brief
 

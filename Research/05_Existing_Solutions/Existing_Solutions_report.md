@@ -7,7 +7,7 @@
 | **Document type** | Research and product brief |
 | **Prepared for** | HealthCom |
 | **Scope** | Status-quo tools, liability pathways, HealthCom feature map, POPIA-aware architecture |
-| **Companion briefs** | [DGMAH](../DGMAH/DGMAH_report.md) · [SA healthcare](../South_African_Healthcare/SA_HealthCare_report.md) · [Language landscape](../Language_Landscape/Language_Landscape_report.md) |
+| **Companion briefs** | [DGMAH](../01_DGMAH/DGMAH_report.md) · [SA healthcare](../02_Healthcare_Language_Barriers/SA_HealthCare_report.md) · [Language landscape](../03_South_African_Languages/Language_Landscape_report.md) |
 | **Last updated** | September 2026 |
 
 ## Executive summary
@@ -290,7 +290,7 @@ HealthCom should be positioned as the missing layer: **understandable care plus 
 
 9. Schlemmer, A., & Mash, B. (2006). The effects of a language barrier in a South African district hospital. *South African Medical Journal*, 96(10), 1084–1087.
 
-10. HealthCom Research. (2026). Companion briefs in `../DGMAH`, `../South_African_Healthcare`, and `../Language_Landscape`.
+10. HealthCom Research. (2026). Companion briefs in `../01_DGMAH`, `../02_Healthcare_Language_Barriers`, and `../03_South_African_Languages`.
 
 ## Appendix A: Suggested citation for this brief
 
