@@ -1,0 +1,25 @@
+﻿:root {
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Source Sans 3", "Segoe UI", sans-serif;
+  --bg: #e8f0ec;
+  --bg-accent: #d5e4db;
+  --ink: #14231c;
+  --ink-muted: #4a5c53;
+  --doctor-soft: #d7e8ee;
+  --doctor-deep: #12343f;
+  --patient-soft: #f3e3d6;
+  --patient-deep: #4a2a1c;
+  --action: #0f7a5a;
+  --action-ink: #ffffff;
+  --warn: #9a5b14;
+  --danger: #9b2c2c;
+  --ok: #1f7a45;
+  --surface: rgba(255, 255, 255, 0.72);
+  --line: rgba(20, 35, 28, 0.12);
+  --shadow: 0 18px 50px rgba(20, 35, 28, 0.12);
+  --radius: 28px;
+  --target: 56px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

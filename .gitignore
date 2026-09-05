@@ -64,3 +64,12 @@ temp/
 # Build artifacts
 *.tsbuildinfo
 out/
+
+# Local demo DB
+backend/data/
+*.sqlite
+*.sqlite-journal
+
+
+backend/data/
+
