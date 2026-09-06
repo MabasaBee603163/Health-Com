@@ -1,0 +1,23 @@
+.conversation {
+  position: relative;
+}
+
+.conversation__header {
+  display: flex;
+  justify-content: center;
+  padding: 12px var(--space) 4px;
+  flex-shrink: 0;
+}
+
+.conversation__stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.conversation__footer {
+  flex-shrink: 0;
+  padding: 10px var(--space) calc(14px + var(--safe-bottom));
+}

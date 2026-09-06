@@ -8,10 +8,10 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 1280,
     height: 800,
-    minWidth: 900,
-    minHeight: 600,
+    minWidth: 360,
+    minHeight: 640,
     title: 'HealthCom',
-    backgroundColor: '#e8f0ec',
+    backgroundColor: '#0B1220',
     autoHideMenuBar: true,
     fullscreenable: true,
     webPreferences: {

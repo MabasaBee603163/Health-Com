@@ -1,0 +1,25 @@
+.turn-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+  color: var(--text-soft);
+  font-size: 0.9rem;
+}
+
+.turn-cue__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.turn-cue__dot.speaker-a {
+  background: var(--accent);
+}
+
+.turn-cue__dot.speaker-b {
+  background: var(--ok);
+}
